@@ -52,6 +52,8 @@ yarn start
 
 Get a hello message. (default is "not found")
 
+> Note: `helloworld.0xchai.testnet` is my default contract, If you deploy with your contract you need to update in `.env` file and makefile script (deploy).
+
 ```bash
 near view helloworld.0xchai.testnet get_hello '{"account_id": "<your_near_id>"}'
 ```
