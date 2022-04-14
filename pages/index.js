@@ -1,23 +1,35 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import Head from 'next/head';
 
-import Loading from '../components/Loading';
+import { WalletContext } from '../components/NearWalletProvider';
 import SkeletonContent from '../components/SkeletonContent';
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
+  const { account, contract, signIn } = useContext(WalletContext);
+
+  const [helloMessage, setHelloMessage] = useState('');
   const [message, setMessage] = useState('');
 
-  let account = '';
+  const hello = async () => {
+    await contract.hello({ message });
+    console.log('completed');
 
-  const connectWallet = () => {};
-
-  const hello = () => {};
+    handleGetHello();
+  };
 
   const handleMessage = (event) => {
     const value = event.target.value;
     setMessage(value);
+  };
+
+  const handleGetHello = async () => {
+    const message = await contract.get_hello({ account_id: account.accountId });
+    setHelloMessage(message);
+  };
+
+  const connectWallet = async () => {
+    signIn();
   };
 
   return (
@@ -35,7 +47,7 @@ export default function Home() {
 
       <main className="mx-auto mt-24">
         <h1 className="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center">
-          👋 Hello NEAR!
+          <span className=" inline-block animate-wiggle">👋</span> Hello NEAR!
         </h1>
 
         {!account ? (
@@ -48,8 +60,8 @@ export default function Home() {
             </button>
           </div>
         ) : (
-          <p className="mt-4 mb-8 mx-auto">
-            <strong>Hello, </strong> {account}
+          <p className="mt-4 mb-8 mx-auto text-center text-indigo-600">
+            <strong>Hello, </strong> {account.accountId}
           </p>
         )}
 
@@ -60,24 +72,28 @@ export default function Home() {
             rows="1"
             onChange={handleMessage}
             value={message}
-            placeholder="Please leave your name :)"
+            placeholder="Please leave your name or message :)"
             className="p-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
           ></textarea>
 
           <div className="text-right mt-4 mb-24">
-            {isLoading ? (
-              <Loading />
-            ) : (
-              <button
-                className="rounded-md py-2 px-4 border-transparent bg-indigo-700 hover:bg-indigo-600 text-slate-200 font-medium disabled:bg-indigo-200"
-                onClick={hello}
-                disabled={!account}
-              >
-                Send a message
-              </button>
-            )}
+            <button
+              className="rounded-md py-2 px-4 border-transparent bg-indigo-700 hover:bg-indigo-600 text-slate-200 font-medium disabled:bg-indigo-200"
+              onClick={hello}
+              disabled={!account}
+            >
+              Send a message
+            </button>
           </div>
         </div>
+
+        {helloMessage ? (
+          <p className="mt-4 mb-8 mx-auto text-center text-indigo-600">
+            You've said: {helloMessage}
+          </p>
+        ) : (
+          <SkeletonContent viewMesage={handleGetHello} />
+        )}
       </main>
 
       <footer className="pt-16 text-center leading-4 text-slate-700">

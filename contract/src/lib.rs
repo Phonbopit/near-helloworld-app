@@ -36,7 +36,7 @@ impl HelloWorld {
     pub fn get_hello(&self, account_id: AccountId) -> String {
         match self.messages.get(&account_id) {
             Some(value) => {
-                log!("value from lookupMap is {}", value);
+                log!("value from lookupMap(messages) is {}", value);
                 value
             }
             None => "not found".to_string(),

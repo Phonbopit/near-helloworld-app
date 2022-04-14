@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SkeletonContent = () => {
+const SkeletonContent = ({ viewMesage }) => {
   return (
     <div className="mt-20 border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
       <div className="animate-pulse flex space-x-4">
@@ -16,6 +16,12 @@ const SkeletonContent = () => {
           </div>
         </div>
       </div>
+      <button
+        className="block mx-auto mt-4 rounded-md py-2 px-4 border-transparent bg-pink-600 hover:bg-pink-700 text-slate-200 font-medium disabled:bg-indigo-200"
+        onClick={viewMesage}
+      >
+        Show a message
+      </button>
     </div>
   );
 };

@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/varela-round": "4.5.5",
+    "near-api-js": "0.44.2",
     "next": "12.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0"
