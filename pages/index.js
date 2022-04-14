@@ -8,14 +8,19 @@ import SkeletonContent from '../components/SkeletonContent';
 export default function Home() {
   const { account, contract, signIn } = useContext(WalletContext);
 
+  const [isSubmiting, setIsSubmiting] = useState(false);
   const [helloMessage, setHelloMessage] = useState('');
   const [message, setMessage] = useState('');
 
   const hello = async () => {
-    await contract.hello({ message });
-    console.log('completed');
+    setIsSubmiting(true);
 
-    handleGetHello();
+    await contract.hello({ message });
+
+    // clear form
+    setHelloMessage('');
+    setMessage('');
+    setIsSubmiting(false);
   };
 
   const handleMessage = (event) => {
@@ -24,7 +29,10 @@ export default function Home() {
   };
 
   const handleGetHello = async () => {
-    const message = await contract.get_hello({ account_id: account.accountId });
+    setHelloMessage('');
+    const message = await contract.get_hello({
+      account_id: account?.accountId
+    });
     setHelloMessage(message);
   };
 
@@ -80,7 +88,7 @@ export default function Home() {
             <button
               className="rounded-md py-2 px-4 border-transparent bg-indigo-700 hover:bg-indigo-600 text-slate-200 font-medium disabled:bg-indigo-200"
               onClick={hello}
-              disabled={!account}
+              disabled={!account || isSubmiting}
             >
               Send a message
             </button>
