@@ -3,6 +3,8 @@ NEAR Hello World App
 
 [Challenge #2 - Hello World Smart Contract](https://nearspring.splashthat.com/)
 
+- [Demo]()
+
 Build with:
 
 - Contract - Rust
@@ -46,8 +48,23 @@ yarn build
 yarn start
 ```
 
+## Interact with Contract (CLI)
+
+Get a hello message. (default is "not found")
+
+```bash
+near view helloworld.0xchai.testnet get_hello '{"account_id": "<your_near_id>"}'
+```
+
+Send a message.
+
+```bash
+near call helloworld.0xchai.testnet hello '{"message": "<message>"}' --account_id=<your_near_id>
+```
+
 ## Reference
 
 - [near-sdk](https://www.near-sdk.io/)
 - [NEAR Example - Status Message](https://github.com/near-examples/rust-status-message)
 - [NEAR Example - Rust Counter](https://github.com/near-examples/rust-counter)
+- [Create Near App](https://github.com/near/create-near-app)
