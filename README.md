@@ -3,7 +3,9 @@ NEAR Hello World App
 
 [Challenge #2 - Hello World Smart Contract](https://nearspring.splashthat.com/)
 
-- [Demo]()
+- [Demo](https://near-helloworld-app.vercel.app)
+
+![Screenshot](ss.png)
 
 Build with:
 
