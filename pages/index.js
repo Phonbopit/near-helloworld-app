@@ -89,7 +89,7 @@ export default function Home() {
 
         {helloMessage ? (
           <p className="mt-4 mb-8 mx-auto text-center text-indigo-600">
-            You've said: {helloMessage}
+            {`You've said: ${helloMessage}`}
           </p>
         ) : (
           <SkeletonContent viewMesage={handleGetHello} />

@@ -3,7 +3,9 @@ NEAR Hello World App
 
 [Challenge #2 - Hello World Smart Contract](https://nearspring.splashthat.com/)
 
-- [Demo]()
+- [Demo](https://near-helloworld-app.vercel.app)
+
+![Screenshot](ss.png)
 
 Build with:
 
@@ -51,6 +53,8 @@ yarn start
 ## Interact with Contract (CLI)
 
 Get a hello message. (default is "not found")
+
+> Note: `helloworld.0xchai.testnet` is my default contract, If you deploy with your contract you need to update in `.env` file and makefile script (deploy).
 
 ```bash
 near view helloworld.0xchai.testnet get_hello '{"account_id": "<your_near_id>"}'

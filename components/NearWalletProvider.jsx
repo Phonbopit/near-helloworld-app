@@ -55,7 +55,6 @@ const NearWalletProvider = ({ config, children }) => {
             balance: accountState.amount
           },
           signIn: () => {
-            console.log('wallet requestSignIn');
             wallet.requestSignIn(config.contractName);
           },
           signOut: () => wallet.signOut(),
@@ -66,7 +65,7 @@ const NearWalletProvider = ({ config, children }) => {
     }
 
     init();
-  }, []);
+  }, [config]);
 
   return (
     <WalletContext.Provider
