@@ -61,6 +61,12 @@ const NearWalletProvider = ({ config, children }) => {
           isSignedIn: wallet.isSignedIn(),
           loadAccount: (accountId) => () => near.account(accountId)
         });
+      } else {
+        setState({
+          signIn: () => {
+            wallet.requestSignIn(config.contractName);
+          }
+        });
       }
     }
 
