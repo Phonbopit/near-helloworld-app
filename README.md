@@ -18,8 +18,8 @@ Build with:
 > Build and deploy a frontend for your smart contract (GitHub Pages is the most simple option). The user should enter their name, call the contract, and see "Hello {name}!"
 
 ```
-// write the given name and save "Hello {name}!" to contract storage.
-export function hello(name: string): string {}
+// write the given name and save "Hello {message}!" to contract storage.
+export function hello(message: string): string {}
 
 // read a message by account_id from contract storage.
 export function get_hello(account_id: AccountId): string {}
